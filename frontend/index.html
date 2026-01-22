@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Royal Restaurant</title>
+    <meta
+      name="description"
+      content="Experience fine dining at Royal Restaurant. Elegant atmosphere, exquisite cuisine, and impeccable service."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              "royal-charcoal": "#1a1a1a",
+              "royal-gold": "#d4af37",
+              "royal-light-gray": "#f5f5f5",
+            },
+            fontFamily: {
+              serif: ['"Playfair Display"', "serif"],
+              sans: ["Lato", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        font-family: "Lato", sans-serif;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Playfair Display", serif;
+      }
+      .nav-link.active {
+        color: #d4af37; /* royal-gold */
+        border-bottom: 2px solid #d4af37;
+      }
+      .menu-item-unavailable {
+        opacity: 0.6;
+        filter: grayscale(100%);
+        pointer-events: none; /* Disable interaction */
+      }
+      .menu-item-unavailable .price {
+        text-decoration: line-through;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-royal-charcoal text-royal-light-gray antialiased leading-relaxed"
+  >
+    <header class="bg-royal-charcoal shadow-lg fixed w-full z-50">
+      <nav
+        class="container mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <a
+          href="#home"
+          class="text-3xl font-serif text-royal-gold tracking-wider hover:text-white transition duration-300"
+          >ROYAL</a
+        >
+        <div class="hidden md:flex space-x-8">
+          <a
+            href="#home"
+            class="nav-link text-white hover:text-royal-gold transition duration-300 pb-1 active"
+            >Home</a
+          >
+          <a
+            href="#about"
+            class="nav-link text-white hover:text-royal-gold transition duration-300 pb-1"
+            >About</a
+          >
+          <a
+            href="#menu"
+            class="nav-link text-white hover:text-royal-gold transition duration-300 pb-1"
+            >Menu</a
+          >
+          <a
+            href="#reservations"
+            class="nav-link text-white hover:text-royal-gold transition duration-300 pb-1"
+            >Reservations</a
+          >
+          <a
+            href="#contact"
+            class="nav-link text-white hover:text-royal-gold transition duration-300 pb-1"
+            >Contact</a
+          >
+        </div>
+        <button
+          id="mobile-menu-button"
+          class="md:hidden text-white focus:outline-none"
+        >
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            ></path>
+          </svg>
+        </button>
+      </nav>
+      <div id="mobile-menu" class="md:hidden bg-royal-charcoal hidden">
+        <a
+          href="#home"
+          class="block py-2 px-6 text-white hover:bg-gray-800 active"
+          >Home</a
+        >
+        <a href="#about" class="block py-2 px-6 text-white hover:bg-gray-800"
+          >About</a
+        >
+        <a href="#menu" class="block py-2 px-6 text-white hover:bg-gray-800"
+          >Menu</a
+        >
+        <a
+          href="#reservations"
+          class="block py-2 px-6 text-white hover:bg-gray-800"
+          >Reservations</a
+        >
+        <a href="#contact" class="block py-2 px-6 text-white hover:bg-gray-800"
+          >Contact</a
+        >
+      </div>
+    </header>
+
+    <main class="pt-16">
+      <!-- Home Section -->
+      <section
+        id="home"
+        class="min-h-screen flex items-center justify-center bg-cover bg-center text-center relative"
+        style="
+          background-image: url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+        "
+      >
+        <div class="absolute inset-0 bg-royal-charcoal opacity-70"></div>
+        <div class="relative z-10 p-8 max-w-4xl mx-auto">
+          <h1
+            class="text-5xl sm:text-6xl md:text-8xl font-serif text-royal-gold mb-4 animate-fade-in-up"
+          >
+            ROYAL
+          </h1>
+          <p
+            class="text-xl md:text-2xl text-white tracking-wide mb-8 animate-fade-in-up delay-200"
+          >
+            An Unforgettable Fine Dining Experience
+          </p>
+          <div
+            class="flex flex-col items-center space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0 animate-fade-in-up delay-400"
+          >
+            <a
+              href="#menu"
+              class="bg-royal-gold text-royal-charcoal py-3 px-8 rounded-full text-lg font-semibold hover:bg-white transition duration-300"
+              >View Menu</a
+            >
+            <a
+              href="#reservations"
+              class="border-2 border-royal-gold text-royal-gold py-3 px-8 rounded-full text-lg font-semibold hover:bg-royal-gold hover:text-royal-charcoal transition duration-300"
+              >Make a Reservation</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- Food Preview & Intro -->
+      <section class="py-16 md:py-20 bg-royal-charcoal text-royal-light-gray">
+        <div class="container mx-auto px-4 md:px-6">
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center"
+          >
+            <div class="space-y-4 md:space-y-6 order-2 md:order-1">
+              <h2 class="text-3xl md:text-4xl font-serif text-royal-gold mb-4">
+                Our Culinary Journey
+              </h2>
+              <p class="text-base md:text-lg leading-relaxed">
+                At Royal, we believe that dining is an art form. Our chefs
+                meticulously craft each dish using the finest, freshest
+                ingredients, sourced locally and globally. Every plate is a
+                symphony of flavors, designed to delight your senses and create
+                lasting memories.
+              </p>
+              <p class="text-base md:text-lg leading-relaxed">
+                Step into an ambiance of sophisticated elegance, where
+                impeccable service meets culinary innovation. Whether it's an
+                intimate dinner or a grand celebration, Royal promises an
+                experience that transcends the ordinary.
+              </p>
+              <div class="mt-6 md:mt-8 flex flex-col gap-4">
+                <a
+                  href="#menu"
+                  class="bg-royal-gold text-royal-charcoal py-3 px-6 md:px-8 rounded-full text-base md:text-lg font-semibold hover:bg-white transition duration-300 text-center"
+                  >Explore Our Menu</a
+                >
+                <a
+                  href="#reservations"
+                  class="border-2 border-royal-gold text-royal-gold py-3 px-6 md:px-8 rounded-full text-base md:text-lg font-semibold hover:bg-royal-gold hover:text-royal-charcoal transition duration-300 text-center"
+                  >Book Your Table</a
+                >
+              </div>
+            </div>
+            <div class="grid grid-cols-2 gap-3 md:gap-4 order-1 md:order-2">
+              
+<img
+    src="images/salata.avif"
+    alt="Fresh salad bowl"
+    class="w-full h-32 md:h-48 object-cover rounded-lg shadow-xl"
+/>
+<img
+    src="images/meso.avif"
+    alt="Grilled steak with vegetables"
+    class="w-full h-32 md:h-48 object-cover rounded-lg shadow-xl"
+/>
+<img
+    src="images/pasta.avif"
+    alt="Creamy pasta dish"
+    class="w-full h-32 md:h-48 object-cover rounded-lg shadow-xl"
+/>
+<img
+    src="images/supa.avif"
+    alt="Chocolate dessert with berries"
+    class="w-full h-32 md:h-48 object-cover rounded-lg shadow-xl"
+/>
+
+
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- About Section -->
+      <section id="about" class="py-20 bg-royal-light-gray text-royal-charcoal">
+        <div class="container mx-auto px-6">
+          <h2 class="text-5xl font-serif text-center text-royal-gold mb-12">
+            Our Story & Philosophy
+          </h2>
+          <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div class="space-y-6">
+              <p class="text-lg leading-relaxed">
+                Royal Restaurant was founded on a passion for culinary
+                excellence and a vision to create a dining experience unlike any
+                other. From our humble beginnings, we have grown into a beacon
+                of gastronomic innovation, always adhering to our core values of
+                quality, integrity, and unparalleled service.
+              </p>
+              <p class="text-lg leading-relaxed">
+                Our philosophy is simple: to transform the freshest,
+                highest-quality ingredients into extraordinary dishes that tell
+                a story. We believe in honoring traditional techniques while
+                embracing modern culinary artistry, ensuring every bite is a
+                journey of discovery. Our commitment extends beyond the plate to
+                the ambiance, where every detail is curated to provide a serene
+                and luxurious escape.
+              </p>
+              <p class="text-lg leading-relaxed">
+                We invite you to become a part of the Royal legacy, where every
+                meal is a celebration of taste, elegance, and the joy of fine
+                dining.
+              </p>
+            </div>
+            <div>
+              <img
+                src="images/restoran.jpg"
+                alt="Elegant restaurant interior"
+                class="w-full h-96 object-cover rounded-lg shadow-xl"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+
+
+
+      <!-- Menu Section -->
+  <section id="menu" class="py-20">
+    <div class="container mx-auto px-6">
+      <h2 class="text-5xl font-serif text-center text-royal-gold mb-6">
+        Our Exquisite Menu
+      </h2>
+
+      <!-- Categories -->
+      <div id="menu-categories" class="mb-10 grid grid-cols-2 gap-4">
+        <button data-category="all" class="menu-category-btn bg-royal-gold text-royal-charcoal py-2 rounded-full font-semibold hover:bg-white w-full">All</button>
+        <button data-category="food" class="menu-category-btn border-2 border-royal-gold text-royal-gold py-2 rounded-full font-semibold hover:bg-royal-gold hover:text-royal-charcoal w-full">Food</button>
+        <button data-category="drinks" class="menu-category-btn border-2 border-royal-gold text-royal-gold py-2 rounded-full font-semibold hover:bg-royal-gold hover:text-royal-charcoal w-full">Drinks</button>
+        <button data-category="desserts" class="menu-category-btn border-2 border-royal-gold text-royal-gold py-2 rounded-full font-semibold hover:bg-royal-gold hover:text-royal-charcoal w-full">Desserts</button>
+      </div>
+
+      <!-- Menu Items -->
+      <div id="menu-items-container" class="grid md:grid-cols-2 lg:grid-cols-3 gap-10"></div>
+    </div>
+  </section>
+
+
+
+
+
+
+      <!-- Reservations Section -->
+      <section
+        id="reservations"
+        class="py-20 bg-royal-light-gray text-royal-charcoal"
+      >
+        <div class="container mx-auto px-6">
+          <h2 class="text-5xl font-serif text-center text-royal-gold mb-12">
+            Make a Reservation
+          </h2>
+          <form
+            id="reservation-form"
+            class="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-xl space-y-6"
+          >
+            <div>
+              <label for="full-name" class="block text-lg font-semibold mb-2"
+                >Full Name</label
+              >
+              <input
+                type="text"
+                id="full-name"
+                name="fullName"
+                class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-royal-gold focus:border-transparent"
+                placeholder="John Doe"
+                required
+              />
+            </div>
+            <div>
+              <label for="email" class="block text-lg font-semibold mb-2"
+                >Email</label
+              >
+              <input
+                type="email"
+                id="email"
+                name="email"
+                class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-royal-gold focus:border-transparent"
+                placeholder="john.doe@example.com"
+                required
+              />
+            </div>
+            <div>
+              <label for="phone" class="block text-lg font-semibold mb-2"
+                >Phone Number</label
+              >
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-royal-gold focus:border-transparent"
+                placeholder="+1 (123) 456-7890"
+                required
+              />
+            </div>
+            <div class="grid md:grid-cols-2 gap-6">
+              <div>
+                <label for="date" class="block text-lg font-semibold mb-2"
+                  >Date</label
+                >
+                <input
+                  type="date"
+                  id="date"
+                  name="date"
+                  class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-royal-gold focus:border-transparent"
+                  required
+                />
+              </div>
+              <div>
+                <label for="time" class="block text-lg font-semibold mb-2"
+                  >Time</label
+                >
+                <input
+                  type="time"
+                  id="time"
+                  name="time"
+                  class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-royal-gold focus:border-transparent"
+                  min="17:00"
+                  max="22:00"
+                  required
+                />
+              </div>
+            </div>
+            <div>
+              <label for="guests" class="block text-lg font-semibold mb-2"
+                >Number of Guests</label
+              >
+              <input
+                type="number"
+                id="guests"
+                name="guests"
+                class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-royal-gold focus:border-transparent"
+                min="1"
+                max="10"
+                value="2"
+                required
+              />
+            </div>
+            <div>
+              <label for="message" class="block text-lg font-semibold mb-2"
+                >Special Request (Optional)</label
+              >
+              <textarea
+                id="message"
+                name="message"
+                rows="4"
+                class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-royal-gold focus:border-transparent"
+                placeholder="Allergies, special occasion, etc."
+              ></textarea>
+            </div>
+            <button
+              type="submit"
+              class="w-full bg-royal-gold text-royal-charcoal py-3 rounded-md text-xl font-semibold hover:bg-white transition duration-300"
+            >
+              Confirm Reservation
+            </button>
+            <div
+              id="reservation-message"
+              class="mt-4 text-center text-green-600 font-semibold hidden"
+            ></div>
+          </form>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section
+        id="contact"
+        class="py-20 bg-royal-charcoal text-royal-light-gray"
+      >
+        <div class="container mx-auto px-6">
+          <h2 class="text-5xl font-serif text-center text-royal-gold mb-12">
+            Contact Us
+          </h2>
+          <div class="grid md:grid-cols-2 gap-12">
+            <div class="space-y-6">
+              <h3 class="text-3xl font-serif text-royal-gold">Get in Touch</h3>
+              <p class="text-lg">
+                <strong class="text-royal-gold">Address:</strong> 123 Royal
+                Avenue, Grand City, 10001
+              </p>
+              <p class="text-lg">
+                <strong class="text-royal-gold">Phone:</strong> +1 (555)
+                123-4567
+              </p>
+              <p class="text-lg">
+                <strong class="text-royal-gold">Email:</strong>
+                info@royalrestaurant.com
+              </p>
+              <div class="mt-8">
+                <h3 class="text-3xl font-serif text-royal-gold mb-4">
+                  Find Us
+                </h3>
+                <div class="aspect-w-16 aspect-h-9">
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.210984990926!2d144.9630579153163!3d-37.81627997975149!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642b9e6a9f3f3%3A0x5045675218ce0e0!2sMelbourne%20VIC%2C%20Australia!5e0!3m2!1sen!2sus!4v1678901234567!5m2!1sen!2sus"
+                    width="100%"
+                    height="300"
+                    style="border: 0"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    title="Google Maps location of Royal Restaurant"
+                  ></iframe>
+                </div>
+              </div>
+            </div>
+            <div
+              class="bg-royal-light-gray p-8 rounded-lg shadow-xl text-royal-charcoal"
+            >
+              <h3 class="text-3xl font-serif text-royal-gold mb-6">
+                Send Us a Message
+              </h3>
+              <form id="contact-form" class="space-y-6">
+                <div>
+                  <label
+                    for="contact-name"
+                    class="block text-lg font-semibold mb-2"
+                    >Your Name</label
+                  >
+                  <input
+                    type="text"
+                    id="contact-name"
+                    name="name"
+                    class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-royal-gold focus:border-transparent"
+                    placeholder="Your Name"
+                    required
+                  />
+                </div>
+                <div>
+                  <label
+                    for="contact-email"
+                    class="block text-lg font-semibold mb-2"
+                    >Your Email</label
+                  >
+                  <input
+                    type="email"
+                    id="contact-email"
+                    name="email"
+                    class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-royal-gold focus:border-transparent"
+                    placeholder="your.email@example.com"
+                    required
+                  />
+                </div>
+                <div>
+                  <label
+                    for="contact-subject"
+                    class="block text-lg font-semibold mb-2"
+                    >Subject</label
+                  >
+                  <input
+                    type="text"
+                    id="contact-subject"
+                    name="subject"
+                    class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-royal-gold focus:border-transparent"
+                    placeholder="Inquiry about..."
+                    required
+                  />
+                </div>
+                <div>
+                  <label
+                    for="contact-message"
+                    class="block text-lg font-semibold mb-2"
+                    >Message</label
+                  >
+                  <textarea
+                    id="contact-message"
+                    name="message"
+                    rows="6"
+                    class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-royal-gold focus:border-transparent"
+                    placeholder="Your message here..."
+                  ></textarea>
+                </div>
+                <button
+                  type="submit"
+                  class="w-full bg-royal-gold text-royal-charcoal py-3 rounded-md text-xl font-semibold hover:bg-white transition duration-300"
+                >
+                  Send Message
+                </button>
+                <div
+                  id="contact-message-status"
+                  class="mt-4 text-center text-green-600 font-semibold hidden"
+                ></div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer
+      class="bg-royal-charcoal text-royal-light-gray py-10 border-t border-gray-800"
+    >
+      <div class="container mx-auto px-6 text-center">
+        <div class="mb-6">
+          <a
+            href="#home"
+            class="text-3xl font-serif text-royal-gold tracking-wider"
+            >ROYAL</a
+          >
+        </div>
+        <div class="flex justify-center space-x-8 mb-6">
+          <a
+            href="#"
+            class="text-white hover:text-royal-gold transition duration-300"
+            >Privacy Policy</a
+          >
+          <a
+            href="#"
+            class="text-white hover:text-royal-gold transition duration-300"
+            >Terms of Service</a
+          >
+        </div>
+        <div class="mb-6">
+          <p>&copy; 2023 Royal Restaurant. All rights reserved.</p>
+          <p>
+            123 Royal Avenue, Grand City, 10001 | +1 (555) 123-4567 |
+            info@royalrestaurant.com
+          </p>
+        </div>
+        <div class="flex justify-center space-x-6 text-2xl">
+          <a
+            href="#"
+            class="text-white hover:text-royal-gold transition duration-300"
+            aria-label="Facebook"
+            ><i class="fab fa-facebook-f"></i
+          ></a>
+          <a
+            href="#"
+            class="text-white hover:text-royal-gold transition duration-300"
+            aria-label="Instagram"
+            ><i class="fab fa-instagram"></i
+          ></a>
+          <a
+            href="#"
+            class="text-white hover:text-royal-gold transition duration-300"
+            aria-label="Twitter"
+            ><i class="fab fa-twitter"></i
+          ></a>
+        </div>
+      </div>
+    </footer>
+
+    <script
+      src="https://kit.fontawesome.com/a076d05399.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Font Awesome for social icons -->
+
+    <script>
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+
+          document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior: "smooth",
+          });
+
+          // Update active class for nav links
+          document
+            .querySelectorAll(".nav-link")
+            .forEach((link) => link.classList.remove("active"));
+          this.classList.add("active");
+
+          // Close mobile menu if open
+          const mobileMenu = document.getElementById("mobile-menu");
+          if (!mobileMenu.classList.contains("hidden")) {
+            mobileMenu.classList.add("hidden");
+          }
+        });
+      });
+
+      // Mobile menu toggle
+      const mobileMenuButton = document.getElementById("mobile-menu-button");
+      const mobileMenu = document.getElementById("mobile-menu");
+
+      mobileMenuButton.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+      });
+
+// Menu Frontend JS - Fetch from backend and handle category filtering
+
+const menuItemsContainer = document.getElementById("menu-items-container");
+
+let currentMenuItems = []; // store menu items fetched from backend
+
+// Fetch menu items from backend
+async function fetchMenuItems() {
+  try {
+    const res = await fetch("/api/menu");
+    if (!res.ok) throw new Error("Failed to fetch menu items");
+    const result = await res.json();
+    currentMenuItems = result.data; // <-- extract array from backend response
+    return currentMenuItems;
+  } catch (err) {
+    console.error("Error fetching menu items:", err);
+    menuItemsContainer.innerHTML =
+      "<p class='text-red-500'>Failed to load menu. Please try again later.</p>";
+    return [];
+  }
+}
+
+// Render menu items based on selected category
+function renderMenuItems(menuItems, filterCategory = "all") {
+  menuItemsContainer.innerHTML = ""; // Clear existing items
+
+  const filteredItems =
+    filterCategory === "all"
+      ? menuItems
+      : menuItems.filter((item) => item.category === filterCategory);
+
+  filteredItems.forEach((item) => {
+    const itemDiv = document.createElement("div");
+    itemDiv.className = `bg-gray-800 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 ${
+      !item.isAvailable ? "menu-item-unavailable" : ""
+    }`;
+    itemDiv.innerHTML = `
+      <img src="${item.image}" alt="${item.name}" class="w-full h-56 object-cover">
+      <div class="p-6">
+        <h3 class="text-2xl font-serif text-royal-gold mb-2">${item.name}</h3>
+        <p class="text-gray-300 mb-4">${item.description}</p>
+        <div class="flex justify-between items-center">
+          <span class="text-xl font-bold text-white price">$${item.price}</span>
+          <span class="text-sm font-semibold ${
+            item.isAvailable ? "text-green-500" : "text-red-500"
+          }">${item.isAvailable ? "Available" : "Unavailable"}</span>
+        </div>
+        <button data-id="${item._id}" class="toggle-availability-btn mt-4 w-full bg-gray-700 text-white py-2 rounded-md text-sm hover:bg-gray-600 transition duration-300">
+          Toggle Availability
+        </button>
+      </div>
+    `;
+    menuItemsContainer.appendChild(itemDiv);
+  });
+
+  // Add event listeners for toggle buttons
+  document.querySelectorAll(".toggle-availability-btn").forEach((button) => {
+    button.addEventListener("click", async (e) => {
+      const itemId = e.target.dataset.id;
+      try {
+        const item = currentMenuItems.find((i) => i._id === itemId);
+        const updatedItem = { isAvailable: !item.isAvailable };
+
+        // Update backend
+        const res = await fetch(`/api/menu/${itemId}`, {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(updatedItem),
+        });
+
+        const data = await res.json();
+        item.isAvailable = data.data.isAvailable; // Update local state
+        renderMenuItems(currentMenuItems, filterCategory); // Re-render current category
+      } catch (err) {
+        console.error("Error updating availability:", err);
+        alert("Failed to update availability.");
+      }
+    });
+  });
+}
+
+// Category buttons
+document.querySelectorAll(".menu-category-btn").forEach((button) => {
+  button.addEventListener("click", (e) => {
+    const category = e.target.dataset.category;
+
+    // Reset button styles
+    document.querySelectorAll(".menu-category-btn").forEach((btn) => {
+      btn.classList.remove("bg-royal-gold", "text-royal-charcoal");
+      btn.classList.add(
+        "border-2",
+        "border-royal-gold",
+        "text-royal-gold",
+        "hover:bg-royal-gold",
+        "hover:text-royal-charcoal"
+      );
+    });
+
+    e.target.classList.add("bg-royal-gold", "text-royal-charcoal");
+    e.target.classList.remove(
+      "border-2",
+      "border-royal-gold",
+      "text-royal-gold",
+      "hover:bg-royal-gold",
+      "hover:text-royal-charcoal"
+    );
+
+    // Render menu items for selected category from local array
+    renderMenuItems(currentMenuItems, category);
+  });
+});
+
+// Initial fetch and render
+fetchMenuItems().then((menuItems) => renderMenuItems(menuItems));
+
+
+
+
+
+
+
+// ===============================
+// CLIENT MENU JS
+// ===============================
+
+// Container
+const menuContainer = document.getElementById("menu-items-container");
+
+// ===============================
+// FETCH MENU ITEMS FROM BACKEND
+// ===============================
+
+
+async function fetchMenu() {
+  try {
+    const res = await fetch("/api/menu");
+    const data = await res.json();
+    if (data.success) {
+      currentMenuItems = data.data; // save items locally
+      renderMenuItems(currentMenuItems); // initial render
+    }
+  } catch (err) {
+    console.error("Error fetching menu:", err);
+  }
+}
+
+// ===============================
+// RENDER MENU ITEMS FOR CLIENTS
+// ===============================
+function renderMenuItems(items, category = "all") {
+  menuContainer.innerHTML = "";
+
+  // Filter items based on category without breaking your code
+  const filteredItems =
+    category === "all"
+      ? items
+      : items.filter((item) => item.category === category);
+
+  filteredItems.forEach(item => {
+    const div = document.createElement("div");
+    div.className =
+      "bg-gray-800 rounded-lg p-4 shadow-lg relative transition-transform duration-500 ease-in-out";
+
+    div.innerHTML = `
+      <!-- Menu Item Content -->
+      <div class="transition-all duration-500 ${!item.isAvailable ? "opacity-50 scale-95" : ""}"
+           style="${!item.isAvailable ? "filter: grayscale(70%) sepia(20%) hue-rotate(80deg);" : ""}">
+        <img src="${item.image}" class="w-full h-40 object-cover rounded mb-2 transition-all duration-500" />
+        <h3 class="text-xl text-royal-gold font-semibold mb-1">${item.name}</h3>
+        <p class="text-gray-300 text-sm mb-2">${item.description}</p>
+        <p class="text-white font-bold mb-3">$${item.price}</p>
+      </div>
+
+      <!-- Availability Badge -->
+      <span class="absolute top-[190px] right-4 text-2xs font-semibold"
+            style="color: ${item.isAvailable ? "green" : "red"};">
+        ${item.isAvailable ? "Available" : "Unavailable"}
+      </span>
+    `;
+
+    menuContainer.appendChild(div);
+  });
+}
+
+// ===============================
+// CATEGORY BUTTONS
+// ===============================
+document.querySelectorAll(".menu-category-btn").forEach((button) => {
+  button.addEventListener("click", (e) => {
+    const category = e.target.dataset.category;
+
+    // Reset button styles
+    document.querySelectorAll(".menu-category-btn").forEach((btn) => {
+      btn.classList.remove("bg-royal-gold", "text-royal-charcoal");
+      btn.classList.add(
+        "border-2",
+        "border-royal-gold",
+        "text-royal-gold",
+        "hover:bg-royal-gold",
+        "hover:text-royal-charcoal"
+      );
+    });
+
+    e.target.classList.add("bg-royal-gold", "text-royal-charcoal");
+    e.target.classList.remove(
+      "border-2",
+      "border-royal-gold",
+      "text-royal-gold",
+      "hover:bg-royal-gold",
+      "hover:text-royal-charcoal"
+    );
+
+    // Filter menu items without touching existing rendering logic
+    renderMenuItems(currentMenuItems, category);
+  });
+});
+
+// ===============================
+// INITIAL LOAD
+// ===============================
+fetchMenu();
+ 
+
+
+
+
+
+
+
+
+
+
+
+     // Reservation Form Submission
+const reservationForm = document.getElementById("reservation-form");
+const reservationMessage = document.getElementById("reservation-message");
+
+reservationForm.addEventListener("submit", function (e) {
+  e.preventDefault();
+  const formData = new FormData(this);
+  const data = Object.fromEntries(formData.entries());
+
+  fetch("/api/reservations", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  })
+    .then((res) => res.json())
+    .then((resData) => {
+      if (resData.success) {
+        reservationMessage.textContent = resData.message;
+        reservationMessage.classList.remove("hidden");
+        reservationMessage.classList.add("text-green-500");
+        this.reset();
+
+        setTimeout(() => {
+          reservationMessage.classList.add("hidden");
+        }, 5000);
+      } else {
+        reservationMessage.textContent = resData.error || "Something went wrong.";
+        reservationMessage.classList.remove("hidden");
+        reservationMessage.classList.add("text-red-500");
+      }
+    })
+    .catch((err) => {
+      reservationMessage.textContent =
+        "Cannot send reservation. Please try again later.";
+      reservationMessage.classList.remove("hidden");
+      reservationMessage.classList.add("text-red-500");
+      console.error("Reservation error:", err);
+    });
+});
+
+
+      //Contant
+
+      // Get elements
+const contactForm = document.getElementById("contact-form");
+const contactMessageStatus = document.getElementById("contact-message-status");
+
+// Safety check (important)
+if (contactForm) {
+  contactForm.addEventListener("submit", function (e) {
+    e.preventDefault(); // 🚫 stop page reload
+
+    const formData = new FormData(contactForm);
+    const data = Object.fromEntries(formData.entries());
+
+    fetch("/api/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((resData) => {
+        if (resData.success) {
+          contactMessageStatus.textContent =
+            resData.message || "Message sent successfully!";
+          contactMessageStatus.classList.remove("hidden", "text-red-500");
+          contactMessageStatus.classList.add("text-green-500");
+          contactForm.reset();
+        } else {
+          throw new Error(resData.error || "Failed");
+        }
+
+        setTimeout(() => {
+          contactMessageStatus.classList.add("hidden");
+        }, 5000);
+      })
+      .catch(() => {
+        contactMessageStatus.textContent =
+          "Cannot send message. Please try again later.";
+        contactMessageStatus.classList.remove("hidden", "text-green-500");
+        contactMessageStatus.classList.add("text-red-500");
+      });
+  });
+}
+
+
+    </script>
+  </body>
+</html>

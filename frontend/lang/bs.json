@@ -1,0 +1,21 @@
+{
+  "nav": {
+    "home": "Početna",
+    "about": "O nama",
+    "menu": "Meni",
+    "reservations": "Rezervacije",
+    "contact": "Kontakt"
+  },
+  "hero": {
+    "subtitle": "Nezaboravno gastronomsko iskustvo",
+    "viewMenu": "Pogledaj meni",
+    "reserve": "Rezerviši sto"
+  },
+  "sections": {
+    "culinaryJourney": "Naše kulinarsko putovanje",
+    "aboutTitle": "Naša priča i filozofija",
+    "menuTitle": "Naš vrhunski meni",
+    "reservationTitle": "Rezervišite sto",
+    "contactTitle": "Kontaktirajte nas"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "menu": "Menu",
+    "reservations": "Reservations",
+    "contact": "Contact"
+  },
+  "hero": {
+    "subtitle": "An Unforgettable Fine Dining Experience",
+    "viewMenu": "View Menu",
+    "reserve": "Make a Reservation"
+  },
+  "sections": {
+    "culinaryJourney": "Our Culinary Journey",
+    "aboutTitle": "Our Story & Philosophy",
+    "menuTitle": "Our Exquisite Menu",
+    "reservationTitle": "Make a Reservation",
+    "contactTitle": "Contact Us"
+  }
+}
