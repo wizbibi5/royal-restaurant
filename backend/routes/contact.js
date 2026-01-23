@@ -6,15 +6,17 @@ const router = express.Router();
 
 // Create email transporter
 const transporter = nodemailer.createTransport({
-  host: "smtp.gmail.com",
+  host: "smtp-relay.brevo.com",
   port: 587,
   secure: false, // must be false for port 587
   auth: {
-    user: process.env.EMAIL,
-    pass: process.env.EMAIL_PASS,
+    user: process.env.BREVO_SMTP_USER,
+    pass: process.env.BREVO_SMTP_PASS,
   },
   connectionTimeout: 10000,
 });
+
+
 
 
 // ✅ Verify transporter ON SERVER START
