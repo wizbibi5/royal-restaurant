@@ -5,16 +5,25 @@ require("dotenv").config();
 
 const router = express.Router();
 
-// Nodemailer transporter
+// Nodemailer transporter — FIXED for Render
 const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
   port: 587,
-  secure: false, // MUST be false for 587
+  secure: false, // must be false for port 587
   auth: {
     user: process.env.EMAIL,
-    pass: process.env.EMAIL_PASS,
+    pass: process.env.EMAIL_PASS, // must be Gmail App Password
   },
   connectionTimeout: 10000,
+});
+
+// ✅ Verify transporter ON SERVER START
+transporter.verify((error, success) => {
+  if (error) {
+    console.error("❌ Mail config error:", error);
+  } else {
+    console.log("✅ Mail server ready");
+  }
 });
 
 // POST /api/reservations
@@ -49,7 +58,7 @@ Time: ${time}
 Guests: ${guests}
 Message: ${message || "None"}
       `,
-      replyTo: email
+      replyTo: email,
     });
 
     res.status(200).json({ success: true, message: "Reservation sent successfully!" });
@@ -60,3 +69,4 @@ Message: ${message || "None"}
 });
 
 module.exports = router;
+
