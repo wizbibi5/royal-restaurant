@@ -4,11 +4,13 @@ require("dotenv").config();
 
 const router = express.Router();
 
-// Create email transporter
+// ===============================
+// Nodemailer transporter (Brevo)
+// ===============================
 const transporter = nodemailer.createTransport({
   host: "smtp-relay.brevo.com",
   port: 587,
-  secure: false, // must be false for port 587
+  secure: false, // MUST be false for port 587
   auth: {
     user: process.env.BREVO_SMTP_USER,
     pass: process.env.BREVO_SMTP_PASS,
@@ -16,19 +18,20 @@ const transporter = nodemailer.createTransport({
   connectionTimeout: 10000,
 });
 
-
-
-
-// ✅ Verify transporter ON SERVER START
-transporter.verify((error, success) => {
+// ===============================
+// Verify mail server on startup
+// ===============================
+transporter.verify((error) => {
   if (error) {
-    console.error("❌ Mail config error:", error);
+    console.error("❌ Mail server error:", error);
   } else {
-    console.log("✅ Mail server ready");
+    console.log("✅ Mail server ready (Contact)");
   }
 });
 
+// ===============================
 // POST /api/contact
+// ===============================
 router.post("/", async (req, res) => {
   console.log("📩 Incoming contact data:", req.body);
 
@@ -44,10 +47,18 @@ router.post("/", async (req, res) => {
 
   try {
     await transporter.sendMail({
-      from: process.env.EMAIL,          // sender (your email)
-      to: process.env.EMAIL,            // restaurant owner email
+      from: process.env.EMAIL_FROM, // ✅ FIXED
+      to: process.env.EMAIL_FROM,   // send to yourself
       subject: `[Contact Form] ${subject}`,
-      text: `Name: ${name}\nEmail: ${email}\n\n${message}`,
+      text: `
+New contact message:
+
+Name: ${name}
+Email: ${email}
+
+Message:
+${message}
+      `,
       replyTo: email,
     });
 
