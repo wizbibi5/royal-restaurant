@@ -11,7 +11,7 @@ const fs = require("fs");
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     const uploadDir = path.join(__dirname, "..", "uploads");
-    if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir);
+    if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir, { recursive: true });
     cb(null, uploadDir);
   },
   filename: function (req, file, cb) {
@@ -24,7 +24,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 // ===============================
-// GET /api/menu - fetch all items (for admin & client)
+// GET /api/menu - fetch all items
 // ===============================
 router.get("/", async (req, res) => {
   try {
@@ -37,7 +37,7 @@ router.get("/", async (req, res) => {
 });
 
 // ===============================
-// POST /api/menu - create new item (admin only)
+// POST /api/menu - create new item (admin)
 // ===============================
 router.post("/", upload.single("image"), async (req, res) => {
   try {
@@ -51,8 +51,7 @@ router.post("/", upload.single("image"), async (req, res) => {
       return res.status(400).json({ success: false, error: "Price must be a number." });
     }
 
-    let imagePath = "";
-    if (req.file) imagePath = `/uploads/${req.file.filename}`;
+    const imagePath = req.file ? `/uploads/${req.file.filename}` : "";
 
     const newItem = new MenuItem({ name, description, price: priceNum, category, image: imagePath });
     await newItem.save();
@@ -65,13 +64,12 @@ router.post("/", upload.single("image"), async (req, res) => {
 });
 
 // ===============================
-// PATCH /api/menu/:id - update item (admin only)
+// PATCH /api/menu/:id - update item (admin)
 // ===============================
 router.patch("/:id", upload.single("image"), async (req, res) => {
   try {
     const updateData = { ...req.body };
 
-    // Convert price to number if exists
     if (updateData.price) {
       const priceNum = parseFloat(updateData.price);
       if (!isNaN(priceNum)) updateData.price = priceNum;
@@ -91,7 +89,7 @@ router.patch("/:id", upload.single("image"), async (req, res) => {
 });
 
 // ===============================
-// PATCH /api/menu/:id/toggle-availability - toggle availability (admin only)
+// PATCH /api/menu/:id/toggle-availability (admin)
 // ===============================
 router.patch("/:id/toggle-availability", async (req, res) => {
   try {
@@ -109,7 +107,7 @@ router.patch("/:id/toggle-availability", async (req, res) => {
 });
 
 // ===============================
-// DELETE /api/menu/:id - delete item (admin only)
+// DELETE /api/menu/:id - delete item (admin)
 // ===============================
 router.delete("/:id", async (req, res) => {
   try {

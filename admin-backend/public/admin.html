@@ -104,8 +104,10 @@
   </div>
 </div>
 
-<!-- SCRIPT -->
 <script>
+/* =====================
+   SAFE DOM REFERENCES
+===================== */
 const container = document.getElementById("menu-items-container");
 const modal = document.getElementById("add-item-modal");
 const openBtn = document.getElementById("open-add-modal-btn");
@@ -113,32 +115,62 @@ const closeBtn = document.getElementById("close-add-modal-btn");
 const form = document.getElementById("add-menu-item-form");
 const categoryBtns = document.querySelectorAll(".menu-category-btn");
 
+if (!container || !modal || !form) {
+  console.error("Admin menu: required DOM elements missing");
+}
+
+/* =====================
+   CONFIG
+===================== */
+const API_BASE = "/api/menu";
+
 let allItems = [];
 let activeCategory = "all";
 let editingId = null;
 
-// OPEN / CLOSE MODAL
-openBtn.onclick = () => {
-  modal.classList.remove("hidden");
-  form.reset();
-  editingId = null; // adding new product
-};
-closeBtn.onclick = () => modal.classList.add("hidden");
-
-// FETCH MENU
-async function fetchMenu() {
-  const res = await fetch("/api/menu");
-  const data = await res.json();
-  allItems = data.data;
-  filterItems();
+/* =====================
+   MODAL CONTROL
+===================== */
+if (openBtn) {
+  openBtn.onclick = () => {
+    modal.classList.remove("hidden");
+    form.reset();
+    editingId = null;
+  };
 }
 
-// FILTER
+if (closeBtn) {
+  closeBtn.onclick = () => modal.classList.add("hidden");
+}
+
+/* =====================
+   FETCH MENU
+===================== */
+async function fetchMenu() {
+  try {
+    const res = await fetch(API_BASE);
+    if (!res.ok) throw new Error("Failed to fetch menu");
+
+    const data = await res.json();
+    allItems = Array.isArray(data.data) ? data.data : [];
+    filterItems();
+  } catch (err) {
+    console.error("Menu fetch error:", err);
+    container.innerHTML =
+      "<p class='text-red-500'>Failed to load menu items.</p>";
+  }
+}
+
+/* =====================
+   FILTERING
+===================== */
 categoryBtns.forEach(btn => {
   btn.onclick = () => {
     activeCategory = btn.dataset.category;
-    categoryBtns.forEach(b => b.classList.remove("bg-royal-gold","text-black"));
-    btn.classList.add("bg-royal-gold","text-black");
+    categoryBtns.forEach(b =>
+      b.classList.remove("bg-royal-gold", "text-black")
+    );
+    btn.classList.add("bg-royal-gold", "text-black");
     filterItems();
   };
 });
@@ -147,17 +179,21 @@ function filterItems() {
   const filtered =
     activeCategory === "all"
       ? allItems
-      : allItems.filter(i =>
-          i.category &&
-          i.category.toLowerCase() === activeCategory
+      : allItems.filter(
+          i =>
+            i.category &&
+            i.category.toLowerCase() === activeCategory
         );
 
   render(filtered);
 }
 
-// RENDER
+/* =====================
+   RENDER
+===================== */
 function render(items) {
   container.innerHTML = "";
+
   items.forEach(item => {
     const div = document.createElement("div");
     div.className =
@@ -167,7 +203,7 @@ function render(items) {
       <div class="${!item.isAvailable ? "opacity-50 scale-95 grayscale" : ""}">
         <img src="${item.image}" class="w-full h-40 object-cover rounded mb-2" />
         <h3 class="text-xl text-royal-gold font-semibold">${item.name}</h3>
-        <p class="text-gray-300 text-sm">${item.description}</p>
+        <p class="text-gray-300 text-sm">${item.description || ""}</p>
         <p class="text-white font-bold">$${item.price}</p>
       </div>
 
@@ -180,47 +216,58 @@ function render(items) {
         <button class="delete-btn text-red-500" data-id="${item._id}">🗑️</button>
       </div>
     `;
+
     container.appendChild(div);
   });
 
   attachActions(items);
 }
 
-// ACTIONS
+/* =====================
+   ACTIONS
+===================== */
 function attachActions(items) {
   items.forEach(item => {
+    const toggleBtn = document.querySelector(`.toggle-btn[data-id="${item._id}"]`);
+    const deleteBtn = document.querySelector(`.delete-btn[data-id="${item._id}"]`);
+    const editBtn = document.querySelector(`.edit-btn[data-id="${item._id}"]`);
 
-    document.querySelector(`.toggle-btn[data-id="${item._id}"]`).onclick =
-      async () => {
-        await fetch(`/api/menu/${item._id}`, {
+    if (toggleBtn) {
+      toggleBtn.onclick = async () => {
+        await fetch(`${API_BASE}/${item._id}`, {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ isAvailable: !item.isAvailable })
         });
         fetchMenu();
       };
+    }
 
-    document.querySelector(`.delete-btn[data-id="${item._id}"]`).onclick =
-      async () => {
-        await fetch(`/api/menu/${item._id}`, { method: "DELETE" });
+    if (deleteBtn) {
+      deleteBtn.onclick = async () => {
+        await fetch(`${API_BASE}/${item._id}`, { method: "DELETE" });
         fetchMenu();
       };
+    }
 
-    // EDIT BUTTON (prefill modal)
-    document.querySelector(`.edit-btn[data-id="${item._id}"]`).onclick = () => {
-      editingId = item._id;
-      modal.classList.remove("hidden");
+    if (editBtn) {
+      editBtn.onclick = () => {
+        editingId = item._id;
+        modal.classList.remove("hidden");
 
-      document.getElementById("new-name").value = item.name || "";
-      document.getElementById("new-description").value = item.description || "";
-      document.getElementById("new-price").value = item.price || "";
-      document.getElementById("new-category").value = item.category || "food";
-      document.getElementById("new-image").value = ""; // clear previous file
-    };
+        document.getElementById("new-name").value = item.name || "";
+        document.getElementById("new-description").value = item.description || "";
+        document.getElementById("new-price").value = item.price || "";
+        document.getElementById("new-category").value = item.category || "food";
+        document.getElementById("new-image").value = "";
+      };
+    }
   });
 }
 
-// SUBMIT FORM (Add / Edit using FormData)
+/* =====================
+   SUBMIT FORM
+===================== */
 form.onsubmit = async e => {
   e.preventDefault();
 
@@ -237,7 +284,7 @@ form.onsubmit = async e => {
     return;
   }
 
-  const url = editingId ? `/api/menu/${editingId}` : "/api/menu";
+  const url = editingId ? `${API_BASE}/${editingId}` : API_BASE;
   const method = editingId ? "PATCH" : "POST";
 
   try {
@@ -260,6 +307,7 @@ form.onsubmit = async e => {
 
 fetchMenu();
 </script>
+
 
 </body>
 </html>

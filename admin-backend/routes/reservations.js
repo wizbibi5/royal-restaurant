@@ -1,6 +1,6 @@
 const express = require("express");
 const Reservation = require("../models/Reservation");
-require("dotenv").config();
+const fetch = require("node-fetch"); // Make sure node-fetch is installed if Node < 18
 
 const router = express.Router();
 
@@ -10,6 +10,7 @@ const router = express.Router();
 router.post("/", async (req, res) => {
   const { fullName, email, phone, date, time, guests, message } = req.body;
 
+  // Validate required fields
   if (!fullName || !email || !phone || !date || !time || !guests) {
     return res.status(400).json({
       success: false,
@@ -18,11 +19,11 @@ router.post("/", async (req, res) => {
   }
 
   try {
-    // Save reservation
+    // Save reservation to MongoDB
     const reservation = new Reservation(req.body);
     await reservation.save();
 
-    // Send email
+    // Send email via Brevo
     const response = await fetch("https://api.brevo.com/v3/smtp/email", {
       method: "POST",
       headers: {
@@ -45,25 +46,27 @@ router.post("/", async (req, res) => {
           name: fullName,
         },
         subject: `[Reservation] ${fullName} - ${date} at ${time}`,
-        textContent: `
-New reservation:
-
+        textContent: `New reservation:\n
 Name: ${fullName}
 Email: ${email}
 Phone: ${phone}
 Date: ${date}
 Time: ${time}
 Guests: ${guests}
-Message: ${message || "None"}
-        `,
+Message: ${message || "None"}`,
       }),
     });
 
     if (!response.ok) {
       const errorText = await response.text();
-      throw new Error(errorText);
+      console.error("❌ Brevo returned error:", errorText);
+      return res.status(500).json({
+        success: false,
+        error: "Failed to send reservation email",
+      });
     }
 
+    // Success
     res.status(200).json({
       success: true,
       message: "Reservation sent successfully!",

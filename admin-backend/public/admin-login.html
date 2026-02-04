@@ -41,35 +41,43 @@
   </div>
 
   <script>
-    const form = document.getElementById("admin-login-form");
-    const passwordInput = document.getElementById("admin-password");
-    const errorMsg = document.getElementById("login-error");
+  const form = document.getElementById("admin-login-form");
+  const passwordInput = document.getElementById("admin-password");
+  const errorMsg = document.getElementById("login-error");
 
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      errorMsg.classList.add("hidden");
+  if (!form || !passwordInput || !errorMsg) {
+    console.error("Admin login: required elements missing");
+  }
 
-      try {
-        const res = await fetch("/admin/login", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ password: passwordInput.value })
-        });
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    errorMsg.classList.add("hidden");
 
-        const data = await res.json();
+    try {
+      const res = await fetch("/admin/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ password: passwordInput.value })
+      });
 
-        if (res.ok && data.success) {
-          window.location.href = "/admin.html"; // Redirect to admin panel
-        } else {
-          errorMsg.textContent = data.error || "Wrong password. Try again.";
-          errorMsg.classList.remove("hidden");
-        }
-      } catch (err) {
-        console.error("Login error:", err);
-        errorMsg.textContent = "Server error. Try again later.";
+      const data = await res.json();
+
+      if (res.ok && data.success) {
+        // ✅ CORRECT REDIRECT
+        window.location.href = "/admin/admin.html";
+      } else {
+        errorMsg.textContent =
+          data.error || "Wrong password. Try again.";
         errorMsg.classList.remove("hidden");
       }
-    });
-  </script>
+    } catch (err) {
+      console.error("Login error:", err);
+      errorMsg.textContent =
+        "Server error. Try again later.";
+      errorMsg.classList.remove("hidden");
+    }
+  });
+</script>
+
 </body>
 </html>
