@@ -1,6 +1,5 @@
 const express = require("express");
 const Reservation = require("../models/Reservation");
-const fetch = require("node-fetch"); // Make sure node-fetch is installed if Node < 18
 
 const router = express.Router();
 
