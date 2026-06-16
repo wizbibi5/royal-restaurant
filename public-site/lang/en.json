@@ -1,21 +1,67 @@
 {
-  "nav": {
-    "home": "Home",
-    "about": "About",
-    "menu": "Menu",
-    "reservations": "Reservations",
-    "contact": "Contact"
-  },
+ "nav": {
+  "home": "Home",
+  "about": "About",
+  "menu": "Menu",
+  "gallery": "Gallery",
+  "reservations": "Reservations",
+  "contact": "Contact"
+},
   "hero": {
-    "subtitle": "An Unforgettable Fine Dining Experience",
+    "title": "ROYAL",
+    "subtitle": "An unforgettable fine dining experience",
     "viewMenu": "View Menu",
-    "reserve": "Make a Reservation"
+    "makeReservation": "Make a Reservation"
   },
-  "sections": {
-    "culinaryJourney": "Our Culinary Journey",
-    "aboutTitle": "Our Story & Philosophy",
-    "menuTitle": "Our Exquisite Menu",
-    "reservationTitle": "Make a Reservation",
-    "contactTitle": "Contact Us"
+  "intro": {
+    "title": "Our Culinary Journey",
+    "p1": "At Royal, we believe that dining is an art form. Our chefs meticulously craft each dish using the finest, freshest ingredients, sourced locally and globally. Every plate is a symphony of flavors, designed to delight your senses and create lasting memories.",
+    "p2": "Step into an ambiance of sophisticated elegance, where impeccable service meets culinary innovation. Whether it's an intimate dinner or a grand celebration, Royal promises an experience that transcends the ordinary.",
+    "exploreMenu": "Explore Our Menu",
+    "bookTable": "Book Your Table"
+  },
+  "about": {
+    "title": "Our Story & Philosophy",
+    "p1": "Royal Restaurant was founded on a passion for culinary excellence and a vision to create a dining experience unlike any other. From our humble beginnings, we have grown into a beacon of gastronomic innovation, always adhering to our core values of quality, integrity, and unparalleled service.",
+    "p2": "Our philosophy is simple: to transform the freshest, highest-quality ingredients into extraordinary dishes that tell a story. We believe in honoring traditional techniques while embracing modern culinary artistry, ensuring every bite is a journey of discovery. "
+  },
+  "menu": {
+    "title": "Our Exquisite Menu",
+    "all": "All",
+    "food": "Food",
+    "drinks": "Drinks",
+    "desserts": "Desserts"
+  },
+  "reservation": {
+    "title": "Make a Reservation",
+    "name": "Full Name",
+    "email": "Email",
+    "phone": "Phone Number",
+    "date": "Date",
+    "time": "Time",
+    "guests": "Number of Guests",
+    "message": "Special Request (Optional)",
+    "submit": "Confirm Reservation",
+    "loading": "Sending...",
+    "success": "Reservation successful!",
+    "error": "Something went wrong"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "getInTouch": "Get in Touch",
+    "address": "Address",
+    "phone": "Phone",
+    "email": "Email",
+    "findUs": "Find Us",
+    "sendMessage": "Send Message",
+    "name": "Your Name",
+    "subject": "Subject",
+    "message": "Message",
+    "submit": "Send"
+  },
+  "footer": {
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "rights": "All rights reserved"
   }
 }

@@ -3,19 +3,65 @@
     "home": "Početna",
     "about": "O nama",
     "menu": "Meni",
+    "gallery": "Galerija",
     "reservations": "Rezervacije",
     "contact": "Kontakt"
   },
   "hero": {
+    "title": "ROYAL",
     "subtitle": "Nezaboravno gastronomsko iskustvo",
-    "viewMenu": "Pogledaj meni",
-    "reserve": "Rezerviši sto"
+    "viewMenu": "Pogledaj Meni",
+    "makeReservation": "Rezerviši Sto"
   },
-  "sections": {
-    "culinaryJourney": "Naše kulinarsko putovanje",
-    "aboutTitle": "Naša priča i filozofija",
-    "menuTitle": "Naš vrhunski meni",
-    "reservationTitle": "Rezervišite sto",
-    "contactTitle": "Kontaktirajte nas"
+  "intro": {
+    "title": "Naše kulinarsko putovanje",
+    "p1": "U Royalu vjerujemo da je gastronomija umjetnost. Naši kuhari s posebnom pažnjom pripremaju svako jelo koristeći najkvalitetnije i najsvježije sastojke, pažljivo odabrane iz lokalnih i svjetskih izvora. Svaki tanjir predstavlja sklad okusa osmišljen da oduševi vaša čula i stvori uspomene koje traju.",
+    "p2": "Zakoračite u ambijent sofisticirane elegancije, gdje se besprijekorna usluga susreće s kulinarskim inovacijama. Bilo da je riječ o intimnoj večeri ili velikoj proslavi, Royal vam pruža iskustvo koje nadilazi svakodnevicu.",
+    "exploreMenu": "Istraži naš meni",
+    "bookTable": "Rezerviši sto"
+  },
+  "about": {
+    "title": "Naša priča i filozofija",
+    "p1": "Restoran Royal nastao je iz strasti prema kulinarskoj izvrsnosti i vizije da gostima pruži jedinstveno gastronomsko iskustvo. Od naših skromnih početaka izrasli smo u prepoznatljivo mjesto gastronomske inovacije, uvijek ostajući vjerni svojim temeljnim vrijednostima – kvaliteti, integritetu i besprijekornoj usluzi.",
+    "p2": "Naša filozofija je jednostavna: najsvježije i najkvalitetnije sastojke pretvoriti u izvanredna jela koja pričaju svoju priču. Vjerujemo u njegovanje tradicionalnih kulinarskih tehnika uz prihvatanje savremenog gastronomskog stvaralaštva, kako bi svaki zalogaj bio novo iskustvo otkrivanja."
+  },
+  "menu": {
+    "title": "Naš izuzetni meni",
+    "all": "Sve",
+    "food": "Hrana",
+    "drinks": "Pića",
+    "desserts": "Deserti"
+  },
+  "reservation": {
+    "title": "Rezerviši sto",
+    "name": "Puno ime",
+    "email": "Email",
+    "phone": "Broj telefona",
+    "date": "Datum",
+    "time": "Vrijeme",
+    "guests": "Broj gostiju",
+    "message": "Posebne napomene (opcionalno)",
+    "submit": "Potvrdi rezervaciju",
+    "loading": "Slanje...",
+    "success": "Rezervacija uspješna!",
+    "error": "Greška, pokušajte ponovo"
+  },
+  "contact": {
+    "title": "Kontaktirajte nas",
+    "getInTouch": "Javite nam se",
+    "address": "Adresa",
+    "phone": "Telefon",
+    "email": "Email",
+    "findUs": "Pronađite nas",
+    "sendMessage": "Pošalji poruku",
+    "name": "Ime",
+    "subject": "Naslov",
+    "message": "Poruka",
+    "submit": "Pošalji"
+  },
+  "footer": {
+    "privacy": "Privatnost",
+    "terms": "Uslovi korištenja",
+    "rights": "Sva prava zadržana"
   }
 }

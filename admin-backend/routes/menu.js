@@ -72,6 +72,8 @@ router.post("/", upload.single("image"), async (req, res) => {
       .from(bucketName)
       .getPublicUrl(filePath);
 
+      console.log(publicUrlData);
+
     const newItem = new MenuItem({
       name,
       description,

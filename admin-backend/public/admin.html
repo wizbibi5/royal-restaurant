@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Admin Menu | Royal Restaurant</title>
   <script src="https://cdn.tailwindcss.com"></script>
-
   <style>
     .text-royal-gold { color: #D4AF37; }
     .bg-royal-gold { background-color: #D4AF37; }
@@ -25,41 +24,85 @@
   <div class="container mx-auto px-4 sm:px-6 md:px-6">
 
     <h2 class="text-5xl font-serif text-center text-royal-gold mb-10 text-3xl sm:text-4xl md:text-5xl">
-      Admin Menu
+      Admin Meni
     </h2>
 
     <!-- ADD BUTTON -->
     <div class="flex justify-center mb-10">
-      <button
-        id="open-add-modal-btn"
-        class="bg-royal-gold text-black text-3xl sm:text-4xl font-bold w-16 h-16 sm:w-20 sm:h-20 rounded-full hover:bg-white transition">
-        +
-      </button>
+     <button
+  id="open-add-modal-btn"
+  class="bg-black text-royal-gold border-2 border-royal-gold
+  text-3xl sm:text-4xl font-bold
+  w-16 h-16 sm:w-20 sm:h-20 rounded-full
+  cursor-pointer
+
+  transition-all duration-300
+  hover:border-amber-400
+  hover:shadow-[0_0_18px_rgba(251,191,36,0.9)]
+  hover:text-amber-300
+
+  active:scale-95
+">
+  +
+</button>
     </div>
 
-    <!-- CATEGORIES -->
-    <div id="menu-categories" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 sm:gap-4 mb-12">
-      <button data-category="all"
-        class="menu-category-btn border-2 border-royal-gold text-royal-gold py-1 sm:py-2 rounded-full font-semibold hover:bg-royal-gold hover:text-black transition text-sm sm:text-base">
-        All
-      </button>
-      <button data-category="food"
-        class="menu-category-btn border-2 border-royal-gold text-royal-gold py-1 sm:py-2 rounded-full font-semibold hover:bg-royal-gold hover:text-black transition text-sm sm:text-base">
-        Food
-      </button>
-      <button data-category="drinks"
-        class="menu-category-btn border-2 border-royal-gold text-royal-gold py-1 sm:py-2 rounded-full font-semibold hover:bg-royal-gold hover:text-black transition text-sm sm:text-base">
-        Drinks
-      </button>
-      <button data-category="desserts"
-        class="menu-category-btn border-2 border-royal-gold text-royal-gold py-1 sm:py-2 rounded-full font-semibold hover:bg-royal-gold hover:text-black transition text-sm sm:text-base">
-        Desserts
-      </button>
-    </div>
+    <!-- Menu Section -->
+    <section id="menu" class="py-20">
+      <div class="container mx-auto px-6">
 
-    <!-- MENU ITEMS -->
-    <div id="menu-items-container"
-      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 lg:gap-10"></div>
+       <!-- CATEGORIES -->
+<div id="menu-categories" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 sm:gap-4 mb-12">
+
+  <button data-category="all"
+    class="menu-category-btn border-2 border-amber-400 bg-amber-500 text-black
+    py-1 sm:py-2 px-4 sm:px-6 rounded-full font-semibold tracking-wide
+    transition-all duration-300 ease-out will-change-transform
+    hover:border-amber-400 hover:shadow-[0_0_12px_rgba(251,191,36,0.8)]
+    active:scale-95
+    text-sm sm:text-base cursor-pointer">
+    Sve
+  </button>
+
+  <button data-category="food"
+    class="menu-category-btn border-2 border-amber-400 bg-transparent text-amber-600
+    py-1 sm:py-2 px-4 sm:px-6 rounded-full font-semibold tracking-wide
+    transition-all duration-300 ease-out
+    hover:border-amber-400 hover:shadow-[0_0_12px_rgba(251,191,36,0.8)]
+    active:scale-95 active:bg-amber-400 active:text-black active:border-amber-400
+    text-sm sm:text-base cursor-pointer">
+    Hrana
+  </button>
+
+  <button data-category="drinks"
+    class="menu-category-btn border-2 border-amber-400 bg-transparent text-amber-600
+    py-1 sm:py-2 px-4 sm:px-6 rounded-full font-semibold tracking-wide
+    transition-all duration-300 ease-out will-change-transform
+    hover:border-amber-400 hover:shadow-[0_0_12px_rgba(251,191,36,0.8)]
+    active:scale-95 active:bg-amber-400 active:text-black active:border-amber-400
+    text-sm sm:text-base cursor-pointer">
+    Pića
+  </button>
+
+  <button data-category="desserts"
+    class="menu-category-btn border-2 border-amber-400 bg-transparent text-amber-600
+    py-1 sm:py-2 px-4 sm:px-6 rounded-full font-semibold tracking-wide
+    transition-all duration-300 ease-out will-change-transform
+    hover:border-amber-400 hover:shadow-[0_0_12px_rgba(251,191,36,0.8)]
+    active:scale-95 active:bg-amber-400 active:text-black active:border-amber-400
+    text-sm sm:text-base cursor-pointer">
+    Deserti
+  </button>
+
+</div>
+
+        <!-- MENU ITEMS -->
+        <div id="menu-items-container"
+          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 lg:gap-10">
+        </div>
+
+      </div>
+    </section>
 
   </div>
 </section>
@@ -72,31 +115,30 @@
     <button id="close-add-modal-btn"
       class="absolute top-3 right-4 text-royal-gold text-2xl">&times;</button>
 
-    <h3 class="text-2xl text-royal-gold mb-6 text-lg sm:text-xl md:text-2xl">Add / Edit Menu Item</h3>
+    <h3 class="text-2xl text-royal-gold mb-6 text-lg sm:text-xl md:text-2xl">Dodaj / Uredi Artikal</h3>
 
     <form id="add-menu-item-form" class="grid gap-3 sm:gap-4">
-      <input id="new-name" placeholder="Name" required
+      <input id="new-name" placeholder="Ime" required
         class="p-2 sm:p-3 rounded text-black w-full" />
-
-      <input id="new-description" placeholder="Description" required
+      <input id="new-description" placeholder="Opis" required
         class="p-2 sm:p-3 rounded text-black w-full" />
-
-      <input id="new-price" type="number" step="0.01" placeholder="Price" required
+      <input id="new-price" type="number" step="0.01" placeholder="Cijena" required
         class="p-2 sm:p-3 rounded text-black w-full" />
-
-      <!-- CATEGORY SELECT -->
       <select id="new-category" required class="p-2 sm:p-3 rounded text-black w-full">
-        <option value="food">Food</option>
-        <option value="drinks">Drinks</option>
-        <option value="desserts">Desserts</option>
+        <option value="food">Hrana</option>
+        <option value="drinks">Pića</option>
+        <option value="desserts">Deserti</option>
       </select>
-
       <input id="new-image" type="file" accept="image/*"
         class="p-2 sm:p-3 rounded bg-white text-black w-full" />
-
-      <button
-        class="bg-royal-gold text-black py-2 sm:py-3 rounded font-semibold hover:bg-white transition w-full">
-        Save Item
+      <button id="admin-save-btn"
+        class="bg-royal-gold text-black py-2 sm:py-3 rounded font-semibold hover:bg-white transition w-full flex items-center justify-center gap-2">
+        <span id="admin-save-text">Sačuvaj</span>
+        <svg id="admin-save-spinner" class="hidden animate-spin h-5 w-5 text-black"
+          xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+        </svg>
       </button>
     </form>
 
@@ -105,115 +147,159 @@
 </div>
 
 <script>
-/* =====================
-   SAFE DOM REFERENCES
-===================== */
+const API_BASE = "/api/menu";
+let allItems = [];
+let activeCategory = "all";
+let editingId = null;
+
 const container = document.getElementById("menu-items-container");
 const modal = document.getElementById("add-item-modal");
 const openBtn = document.getElementById("open-add-modal-btn");
 const closeBtn = document.getElementById("close-add-modal-btn");
 const form = document.getElementById("add-menu-item-form");
 const categoryBtns = document.querySelectorAll(".menu-category-btn");
+const saveBtn = document.getElementById("admin-save-btn");
+const saveSpinner = document.getElementById("admin-save-spinner");
+const saveText = document.getElementById("admin-save-text");
+const addItemMessage = document.getElementById("add-item-message");
 
-if (!container || !modal || !form) {
-  console.error("Admin menu: required DOM elements missing");
-}
+document.querySelectorAll('.menu-category-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.menu-category-btn').forEach(b => {
+        b.classList.remove('!bg-amber-400', '!text-black', '!border-amber-400');
+        b.classList.add('bg-transparent', 'text-amber-400', 'border-amber-400');
+      });
+      btn.classList.remove('bg-transparent', 'text-amber-400', 'border-amber-400');
+      btn.classList.add('!bg-amber-400', '!text-black', '!border-amber-400');
+    });
+  });
 
-/* =====================
-   CONFIG
-===================== */
-const API_BASE = "/api/menu";
 
-let allItems = [];
-let activeCategory = "all";
-let editingId = null;
-
-/* =====================
-   MODAL CONTROL
-===================== */
 if (openBtn) {
-  openBtn.onclick = () => {
+  openBtn.addEventListener("click", () => {
     modal.classList.remove("hidden");
     form.reset();
     editingId = null;
-  };
+    saveText.textContent = "Save Item";
+  });
 }
 
 if (closeBtn) {
-  closeBtn.onclick = () => modal.classList.add("hidden");
+  closeBtn.addEventListener("click", () => modal.classList.add("hidden"));
 }
 
-/* =====================
-   FETCH MENU
-===================== */
 async function fetchMenu() {
   try {
     const res = await fetch(API_BASE);
-    if (!res.ok) throw new Error("Failed to fetch menu");
-
+    if (!res.ok) throw new Error("Nije uspelo dohvatiti meni");
     const data = await res.json();
     allItems = Array.isArray(data.data) ? data.data : [];
     filterItems();
   } catch (err) {
     console.error("Menu fetch error:", err);
-    container.innerHTML =
-      "<p class='text-red-500'>Failed to load menu items.</p>";
+    container.innerHTML = "<p class='text-red-500'>Failed to load menu items.</p>";
   }
 }
 
-/* =====================
-   FILTERING
-===================== */
 categoryBtns.forEach(btn => {
-  btn.onclick = () => {
+  btn.addEventListener("click", () => {
     activeCategory = btn.dataset.category;
-    categoryBtns.forEach(b =>
-      b.classList.remove("bg-royal-gold", "text-black")
-    );
+    categoryBtns.forEach(b => b.classList.remove("bg-royal-gold", "text-black"));
     btn.classList.add("bg-royal-gold", "text-black");
     filterItems();
-  };
+  });
 });
 
 function filterItems() {
-  const filtered =
-    activeCategory === "all"
-      ? allItems
-      : allItems.filter(
-          i =>
-            i.category &&
-            i.category.toLowerCase() === activeCategory
-        );
-
+  const filtered = activeCategory === "all"
+    ? allItems
+    : allItems.filter(i => i.category && i.category.toLowerCase() === activeCategory);
   render(filtered);
 }
 
-/* =====================
-   RENDER
-===================== */
 function render(items) {
   container.innerHTML = "";
 
   items.forEach(item => {
     const div = document.createElement("div");
-    div.className =
-      "bg-gray-800 rounded-xl p-4 shadow-lg transition-all duration-500";
+
+    div.className = `
+      bg-gray-800 rounded-xl p-4 shadow-lg flex flex-col h-full
+      transition-all duration-300 ease-out
+      ${
+        item.isAvailable
+          ? "hover:-translate-y-1 hover:shadow-2xl"
+          : ""
+      }
+    `;
 
     div.innerHTML = `
-      <div class="${!item.isAvailable ? "opacity-50 scale-95 grayscale" : ""}">
-        <img src="${item.image}" class="w-full h-40 object-cover rounded mb-2" />
-        <h3 class="text-xl text-royal-gold font-semibold">${item.name}</h3>
-        <p class="text-gray-300 text-sm">${item.description || ""}</p>
-        <p class="text-white font-bold">$${item.price}</p>
+      <div class="${!item.isAvailable ? "opacity-50 grayscale scale-95" : ""} flex flex-col flex-1 transition-all duration-300">
+
+        <img 
+          src="${item.image}" 
+          class="w-full h-40 object-cover rounded mb-3 transition-transform duration-300 ${
+            item.isAvailable ? "hover:scale-[1.02]" : ""
+          }" 
+        />
+
+        <!-- CONTENT -->
+        <div class="flex flex-col flex-1">
+
+          <h3 class="text-xl text-royal-gold font-semibold mb-2 break-words leading-snug transition-colors duration-300 ${
+            item.isAvailable ? "hover:text-yellow-300" : ""
+          }">
+            ${item.name}
+          </h3>
+
+          <p class="text-gray-300 text-sm mb-3 break-words flex-1 transition-opacity duration-300">
+            ${item.description || ""}
+          </p>
+
+          <p class="text-white font-bold mb-4 whitespace-nowrap">
+            $${item.price}
+          </p>
+
+        </div>
       </div>
 
-      <div class="flex justify-between mt-4">
-        <button class="edit-btn text-blue-400" data-id="${item._id}">✏️</button>
-        <button class="toggle-btn ${item.isAvailable ? "text-green-500" : "text-red-500"}"
-          data-id="${item._id}">
-          ${item.isAvailable ? "🟢" : "🔴"}
+      <!-- ACTION BUTTONS -->
+      <div class="flex justify-between mt-auto pt-3 border-t border-gray-700 gap-2">
+
+        <button 
+          class="edit-btn flex-1 text-sm text-blue-400 border border-blue-400 px-2 py-1 rounded-md
+          transition-all duration-200 ease-out
+          hover:bg-blue-500 hover:text-black hover:scale-[1.03]
+          active:scale-95"
+          data-id="${item._id}"
+        >
+          Izmijeni
         </button>
-        <button class="delete-btn text-red-500" data-id="${item._id}">🗑️</button>
+
+        <button 
+          class="toggle-btn flex-1 text-sm px-2 py-1 rounded-md border
+          transition-all duration-200 ease-out
+          hover:scale-[1.03] active:scale-95
+          ${
+            item.isAvailable
+              ? "text-green-500 border-green-500 hover:bg-green-500 hover:text-black"
+              : "text-red-500 border-red-500 hover:bg-red-500 hover:text-black"
+          }"
+          data-id="${item._id}"
+        >
+          ${item.isAvailable ? "Dostupno" : "Nedostupno"}
+        </button>
+
+        <button 
+          class="delete-btn flex-1 text-sm text-red-500 border border-red-500 px-2 py-1 rounded-md
+          transition-all duration-200 ease-out
+          hover:bg-red-500 hover:text-black hover:scale-[1.03]
+          active:scale-95"
+          data-id="${item._id}"
+        >
+          Obriši
+        </button>
+
       </div>
     `;
 
@@ -223,9 +309,6 @@ function render(items) {
   attachActions(items);
 }
 
-/* =====================
-   ACTIONS
-===================== */
 function attachActions(items) {
   items.forEach(item => {
     const toggleBtn = document.querySelector(`.toggle-btn[data-id="${item._id}"]`);
@@ -233,81 +316,106 @@ function attachActions(items) {
     const editBtn = document.querySelector(`.edit-btn[data-id="${item._id}"]`);
 
     if (toggleBtn) {
-      toggleBtn.onclick = async () => {
+      toggleBtn.addEventListener("click", async () => {
         await fetch(`${API_BASE}/${item._id}`, {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ isAvailable: !item.isAvailable })
         });
         fetchMenu();
-      };
+      });
     }
 
     if (deleteBtn) {
-      deleteBtn.onclick = async () => {
+      deleteBtn.addEventListener("click", async () => {
+        if (!confirm("Da li ste sigurni da želite da obrišete ovaj artikal?")) return;
         await fetch(`${API_BASE}/${item._id}`, { method: "DELETE" });
         fetchMenu();
-      };
+      });
     }
 
     if (editBtn) {
-      editBtn.onclick = () => {
+      editBtn.addEventListener("click", () => {
         editingId = item._id;
         modal.classList.remove("hidden");
-
         document.getElementById("new-name").value = item.name || "";
         document.getElementById("new-description").value = item.description || "";
         document.getElementById("new-price").value = item.price || "";
         document.getElementById("new-category").value = item.category || "food";
         document.getElementById("new-image").value = "";
-      };
+        saveText.textContent = "Update Item";
+      });
     }
   });
 }
 
-/* =====================
-   SUBMIT FORM
-===================== */
-form.onsubmit = async e => {
-  e.preventDefault();
+if (form) {
+  form.addEventListener("submit", async function (e) {
+    e.preventDefault();
 
-  const formData = new FormData();
-  formData.append("name", document.getElementById("new-name").value.trim());
-  formData.append("description", document.getElementById("new-description").value.trim());
-  formData.append("price", parseFloat(document.getElementById("new-price").value));
-  formData.append("category", document.getElementById("new-category").value);
+    saveSpinner.classList.remove("hidden");
+    saveText.textContent = "Čuvanje...";
+    saveBtn.disabled = true;
+    saveBtn.classList.add("opacity-70", "cursor-not-allowed");
 
-  const imageFile = document.getElementById("new-image").files[0];
-  if (imageFile) formData.append("image", imageFile);
-  else if (!editingId) {
-    alert("Please select an image for the new product.");
-    return;
-  }
+    const name = document.getElementById("new-name").value;
+    const description = document.getElementById("new-description").value;
+    const price = document.getElementById("new-price").value;
+    const category = document.getElementById("new-category").value;
+    const imageFile = document.getElementById("new-image").files[0];
 
-  const url = editingId ? `${API_BASE}/${editingId}` : API_BASE;
-  const method = editingId ? "PATCH" : "POST";
+    try {
+      const formData = new FormData();
+      formData.append("Ime", name);
+      formData.append("Opis", description);
+      formData.append("Cijena", price);
+      formData.append("Kategorija", category);
+      if (imageFile) formData.append("Slika", imageFile);
 
-  try {
-    const res = await fetch(url, { method, body: formData });
-    const json = await res.json();
+      const url = editingId ? `${API_BASE}/${editingId}` : API_BASE;
+      const method = editingId ? "PATCH" : "POST";    
 
-    if (json.success) {
-      fetchMenu();
-      modal.classList.add("hidden");
-      form.reset();
-      editingId = null;
-    } else {
-      alert(json.message || "Error saving product.");
+      const res = await fetch(url, { method, body: formData });
+      const data = await res.json();
+
+      console.log(data);
+
+      if (data.success) {
+        addItemMessage.textContent = editingId ? "Artikal ažuriran!" : "Artikal dodat!";
+        addItemMessage.classList.remove("hidden", "text-red-500");
+        addItemMessage.classList.add("text-green-500");
+        fetchMenu();
+        form.reset();
+        editingId = null;
+        setTimeout(() => {
+          modal.classList.add("hidden");
+          addItemMessage.classList.add("hidden");
+        }, 1000);
+      } else {
+        addItemMessage.textContent = data.error || "Nije uspelo sačuvati artikal.";
+        addItemMessage.classList.remove("hidden", "text-green-500");
+        addItemMessage.classList.add("text-red-500");
+      }
+    } catch (err) {
+      console.error("Save item error:", err);
+      addItemMessage.textContent = " Greška prilikom čuvanja artikla.";
+      addItemMessage.classList.remove("hidden", "text-green-500");
+      addItemMessage.classList.add("text-red-500");
+    } finally {
+      saveSpinner.classList.add("hidden");
+      saveText.textContent = "Sačuvaj Artikal";
+      saveBtn.disabled = false;
+      saveBtn.classList.remove("opacity-70", "cursor-not-allowed");
     }
-  } catch (err) {
-    console.error(err);
-    alert("Error saving product.");
-  }
-};
+  });
+}
 
-fetchMenu();
+document.addEventListener("DOMContentLoaded", () => {
+  const defaultButton = document.querySelector('[data-category="all"]');
+  if (defaultButton) defaultButton.click();
+  fetchMenu();
+});
 </script>
-
 
 </body>
 </html>

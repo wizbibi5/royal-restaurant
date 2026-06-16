@@ -17,6 +17,7 @@ router.post("/", async (req, res) => {
   }
 
   try {
+    // Create transporter once per request
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
@@ -25,7 +26,8 @@ router.post("/", async (req, res) => {
       },
     });
 
-    await transporter.sendMail({
+    // Send email with a timeout wrapper
+    const sendMailPromise = transporter.sendMail({
       from: `"Royal Restaurant" <${process.env.EMAIL}>`,
       to: process.env.EMAIL,
       replyTo: email,
@@ -39,15 +41,24 @@ ${message}
       `,
     });
 
-    res.json({
+    // Optional: timeout after 15 seconds
+    const result = await Promise.race([
+      sendMailPromise,
+      new Promise((_, reject) =>
+        setTimeout(() => reject(new Error("Email sending timed out")), 15000)
+      ),
+    ]);
+
+    // If successful
+    return res.json({
       success: true,
       message: "Message sent successfully",
     });
   } catch (err) {
-    console.error("❌ Email send error:", err);
-    res.status(500).json({
+    console.error("❌ Email send error:", err.message || err);
+    return res.status(500).json({
       success: false,
-      error: "Failed to send message",
+      error: "Failed to send message. Please try again later.",
     });
   }
 });
